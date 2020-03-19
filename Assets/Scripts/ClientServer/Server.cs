@@ -52,7 +52,7 @@ namespace ClientServer {
 			while (acceptLoop){
 				try{
 					TcpClient client = await tcpListener.AcceptTcpClientAsync()
-														.ConfigureAwait(false); //?? не возвращаться в исходный поток (остаться в потоке await task)
+														.ConfigureAwait(false); //не возвращаться в исходный поток (остаться в потоке await task)
 
 					Task _ = Task.Run(() => OnConnectClient(client));
 				}

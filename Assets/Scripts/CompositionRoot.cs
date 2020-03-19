@@ -5,12 +5,13 @@ using System.Threading.Tasks;
 using ClientServer;
 using ClientServer.Interfaces;
 using Interfaces;
+using UI;
 using UniRx;
 using UnityEngine;
 using Zenject;
 
 public class CompositionRoot : MonoBehaviour {
-	[Inject] private IClientSideControls clientSideControls;
+	[Inject] private IClientSide clientSide;
 	[Inject] private IServerSide serverSide;
 	[Inject] private ControlPanel controlPanel;
 
@@ -35,8 +36,8 @@ public class CompositionRoot : MonoBehaviour {
 		controlPanel.RunClientButton.onClick.AddListener(RunClient);
 		controlPanel.StopClientButton.onClick.AddListener(StopClient);
 
-		clientSideControls.SwitchLight.Subscribe(_ => Client_SendMessage(message_SwitchLight));
-		clientSideControls.Explode.Subscribe(_ => Client_SendMessage(message_Explode));
+		clientSide.SwitchLight.Subscribe(_ => Client_SendMessage(message_SwitchLight));
+		clientSide.Explode.Subscribe(_ => Client_SendMessage(message_Explode));
 	}
 
 	private void Client_SendMessage(string message){

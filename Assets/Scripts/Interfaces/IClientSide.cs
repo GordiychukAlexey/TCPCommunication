@@ -1,7 +1,7 @@
 using UniRx;
 
 namespace Interfaces {
-	public interface IClientSideControls {
+	public interface IClientSide {
 		Subject<Unit> SwitchLight{ get; }
 		Subject<Unit> Explode{ get; }
 	}
